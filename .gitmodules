@@ -1,0 +1,3 @@
+[submodule "fakeSubModuleTest"]
+	path = fakeSubModuleTest
+	url = https://github.com/ginoskotheon/fakeSubModuleTest.git

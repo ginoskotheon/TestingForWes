@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #myContainer {
+            position: relative;
+            margin: auto;
+            width: 400px;
+            height: 400px;
+            background: yellow;
+            cursor: pointer;
+        }
+
+        #myAnimation {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+        }
+
+        #myGridUL {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 25px;
+        }
+
+        #myGridUL ul {
+            display: grid;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            grid-template-columns: repeat(2, calc(50% - 30px));
+            grid-column-gap: 60px;
+        }
+
+        .left {
+            flex: 1;
+            max-width: 100%;
+            grid-row: 1 / span 4;
+            grid-column: 1;
+        }
+
+        .right {
+            flex: 1;
+            max-width: 100%;
+            grid-column: 2;
+            margin-bottom: 40px;
+        }
+
+        .right h2 {
+            margin: 0;
+        }
+
+        .right picture, .right img {
+            margin-right: 25px;
+            max-width: 100%;
+        }
+
+        .category {
+            color: #918f8f;
+            font-size: 14px;
+            line-height: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <p>
+        <button onclick="myMove()">Click Me</button>
+    </p> -->
+
+    <div id="myContainer">
+        <div id="myAnimation"></div>
+    </div>
+
+    <div id="myGridUL">
+        <ul>
+            <li class="left">
+                <div>
+                    <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/03/Female_Farmer_Kale_732x549-thumbnail.jpg?w=1092"
+                        width="100%" />
+                </div>
+                <div>
+                    <div class="category">Diet and Fitness</div>
+                    <h1>Kale Near Top of ‘Dirty Dozen’ Produce List</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla dolor felis, vitae semper
+                        est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla dolor felis, vitae semper
+                        est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla dolor felis, vitae semper
+                        est.</p>
+                </div>
+            </li>
+            <li class="right">
+                <div style="display:flex">
+                    <picture>
+                        <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/03/Male_Laptop_Studying_732x549-thumbnail.jpg?w=441"
+                            style="margin-right:25px;" />
+                    </picture>
+                    <div class="words">
+                        <div class="category">Prevention</div>
+                        <h2>What to Know About Psychosis Risk for ADHD Drugs Like Adderall</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla dolor felis, vitae
+                            semper
+                            est.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="right">
+                <div style="display:flex;">
+                    <picture>
+                        <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/03/Female_Sunscreen_732x549-thumbnail.jpg?w=441" />
+                    </picture>
+                    <div class="words">
+                        <div class="category">Mental Health</div>
+                        <h2>A Cream with Synthetic Vitamin D May Help Reduce Skin Cancer Risk</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla dolor felis, vitae
+                            semper
+                            est.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="right">
+                <div style="display:flex">
+                    <picture>
+                        <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/03/Female_Drinking_Straw_Cup-732x549-Thumbnail.jpg?w=441" />
+                    </picture>
+                    <div class="words">
+                        <div class="category">Heart Health</div>
+                        <h2>It’s Not Just Soda – All Sweetened Drinks Can Raise Heart Disease Risk</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla dolor felis, vitae
+                            semper
+                            est.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var scrollStatus = {
+            wheeling: false,
+            functionCall: false
+        };
+        var scrollTimer = false;
+        var scrollTimer = false;
+        var pos = 0;
+        var $jump = 25;
+        var width = 50;
+        var scrollCount = 0;
+
+        document.getElementById('myContainer').addEventListener('wheel', myMove);
+        function myMove() {
+            var elem = document.getElementById("myAnimation");
+            scrollStatus.wheeling = true;
+            if (!scrollStatus.functionCall) {
+                if (event.deltaY > 0) {
+                    pos += $jump;
+                    scrollCount++;
+                    elem.style.top = pos + 'px';
+                    elem.style.left = pos + 'px';
+                    elem.style.borderRadius = Math.floor(pos / 14) + 'px'
+                    if (pos >= 350) {
+                        pos = 325
+                        scrollCount = 14;
+                    }
+
+                }
+                if (event.deltaY < 0) {
+                    pos -= $jump;
+                    scrollCount--;
+                    elem.style.top = pos + 'px';
+                    elem.style.left = pos + 'px';
+                    elem.style.borderRadius = Math.floor(pos / 10) + 'px'
+
+                    if (pos <= 25) {
+                        pos = 25;
+                        scrollCount = 0;
+                    }
+                }
+                scrollStatus.functionCall = true;
+            }
+
+            window.clearInterval(scrollTimer);
+            scrollTimer = window.setTimeout(function () {
+                scrollStatus.wheeling = false;
+                scrollStatus.functionCall = false;
+            }, 50);
+            console.log(scrollCount);
+
+        }
+    </script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@
     margin: auto;
     width: 400px;
     height: 400px;
-    background: yellow;
+    background: red;
     cursor: pointer;
 }
 
@@ -11,7 +11,7 @@
     width: 50px;
     height: 50px;
     position: absolute;
-    background-color: red;
+    background-color: yellow;
 }
 
 #myGridUL {
